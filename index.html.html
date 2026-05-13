@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Kathy Intriago - La Fiesta 🔥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Oswald:wght@400;700&family=Bangers&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #FF2D7B;
+            --neon-cyan: #00F5FF;
+            --neon-yellow: #FFE500;
+            --neon-green: #39FF14;
+            --neon-orange: #FF6B00;
+            --dark: #0A0A0A;
+            --dark-2: #111111;
+            --dark-3: #1A1A1A;
+            --fire-1: #FF4500;
+            --fire-2: #FF6347;
+            --smoke: #2A2A2A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: var(--dark);
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* ============================================
+           COVER - EXPLOSIVE ENTRANCE
+           ============================================ */
+        .cover {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--dark);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .cover.hidden {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        /* Animated background grid */
+        .grid-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,45,123,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,45,123,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridMove 4s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
+        }
+
+        /* Smoke/fog effect */
+        .smoke-layer {
+            position: absolute;
+            bottom: 0; left: -50%;
+            width: 200%; height: 40%;
+            background: radial-gradient(ellipse at center, rgba(255,45,123,0.08) 0%, transparent 70%);
+            animation: smokeFloat 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes smokeFloat {
+            0% { transform: translateX(0) scale(1); opacity: 0.5; }
+            100% { transform: translateX(5%) scale(1.1); opacity: 0.8; }
+        }
+
+        .cover-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glowing envelope */
+        .envelope-epic {
+            width: 200px; height: 140px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: envelopeHover 2s ease-in-out infinite;
+        }
+
+        @keyframes envelopeHover {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .envelope-body {
+            width: 200px; height: 130px;
+            background: linear-gradient(135deg, var(--neon-pink), #FF1493);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(255,45,123,0.5), 0 0 80px rgba(255,45,123,0.2);
+        }
+
+        .envelope-flap-cover {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 70px solid #FF1493;
+            filter: brightness(0.8);
+        }
+
+        .envelope-seal {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px; height: 60px;
+            background: var(--neon-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 0 20px rgba(255,229,0,0.6);
+            animation: sealPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sealPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,229,0,0.4); }
+            50% { box-shadow: 0 0 40px rgba(255,229,0,0.8), 0 0 60px rgba(255,229,0,0.3); }
+        }
+
+        .cover-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 42px;
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px rgba(255,45,123,0.6), 0 0 40px rgba(255,45,123,0.3);
+            margin-bottom: 8px;
+            animation: glitchText 3s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 93%, 100% { transform: translateX(0); }
+            94% { transform: translateX(-3px) skewX(-1deg); }
+            95% { transform: translateX(3px) skewX(1deg); }
+            96% { transform: translateX(-2px); }
+        }
+
+        .cover-sub {
+            font-family: 'Bangers', cursive;
+            font-size: 22px;
+            color: var(--neon-cyan);
+            letter-spacing: 5px;
+            text-shadow: 0 0 15px rgba(0,245,255,0.5);
+        }
+
+        .cover-tap {
+            font-family: 'Oswald', sans-serif;
+            font-size: 14px;
+            color: var(--neon-yellow);
+            margin-top: 35px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Sparks */
+        .spark {
+            position: absolute;
+            width: 3px; height: 3px;
+            background: var(--neon-yellow);
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkFly 2s infinite;
+        }
+
+        @keyframes sparkFly {
+            0% { opacity: 0; transform: translate(0,0) scale(0); }
+            20% { opacity: 1; }
+            100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(1); }
+        }
+
+        /* ============================================
+           MAIN CONTENT
+           ============================================ */
+        .main {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .main.visible { opacity: 1; }
+
+        /* HERO */
+        .hero {
+            background: var(--dark);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated fire border top */
+        .fire-border {
+            position: absolute;
+            top: 0; left: 0;
+            width: 200%; height: 6px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow), var(--neon-cyan), var(--neon-green), var(--neon-pink));
+            background-size: 200% 100%;
+            animation: rainbowBorder 3s linear infinite;
+        }
+
+        @keyframes rainbowBorder {
+            0% { background-position: 0% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .hero-emoji-row {
+            font-size: 50px;
+            margin-bottom: 20px;
+            animation: bounceEmojis 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounceEmojis {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-name {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 58px;
+            color: white;
+            text-shadow: 
+                0 0 10px var(--neon-pink),
+                0 0 30px var(--neon-pink),
+                0 0 60px var(--neon-pink);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .hero-event {
+            font-family: 'Bangers', cursive;
+            font-size: 32px;
+            color: var(--neon-yellow);
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px rgba(255,229,0,0.5);
+            margin-bottom: 5px;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: var(--neon-cyan);
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Neon line divider */
+        .neon-line {
+            width: 120px; height: 2px;
+            background: var(--neon-pink);
+            margin: 25px auto;
+            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
+
+        /* CARDS */
+        .cards-zone {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 50%, var(--dark) 100%);
+            padding: 30px 20px;
+        }
+
+        .cards-inner {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--dark-3);
+            border-radius: 20px;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,45,123,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+        }
+
+        .card-emoji {
+            font-size: 50px;
+            display: block;
+            margin-bottom: 12px;
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        .card:nth-child(2) .card-emoji { animation-delay: 0.4s; }
+        .card:nth-child(3) .card-emoji { animation-delay: 0.8s; }
+        .card:nth-child(4) .card-emoji { animation-delay: 1.2s; }
+
+        .card-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13px;
+            color: var(--neon-cyan);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 26px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 17px;
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        .card-text strong {
+            color: var(--neon-yellow);
+        }
+
+        /* What to expect section */
+        .expect-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .expect-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,45,123,0.1);
+            border-radius: 16px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .expect-item:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255,45,123,0.15);
+            transform: translateY(-3px);
+        }
+
+        .expect-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 8px;
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+
+        .expect-item:nth-child(1) .expect-icon { animation-delay: 0s; }
+        .expect-item:nth-child(2) .expect-icon { animation-delay: 0.3s; }
+        .expect-item:nth-child(3) .expect-icon { animation-delay: 0.6s; }
+        .expect-item:nth-child(4) .expect-icon { animation-delay: 0.9s; }
+
+        .expect-name {
+            font-family: 'Bangers', cursive;
+            font-size: 18px;
+            color: white;
+            letter-spacing: 2px;
+        }
+
+        .expect-desc {
+            font-size: 13px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* Entry rule - BEBIDA EN MANO */
+        .entry-card {
+            background: linear-gradient(135deg, rgba(255,45,123,0.1) 0%, rgba(0,245,255,0.05) 100%);
+            border: 2px solid var(--neon-pink);
+            text-align: center;
+            position: relative;
+        }
+
+        .entry-card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan), var(--neon-yellow), var(--neon-pink)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderGlow 3s linear infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .entry-badge {
+            display: inline-block;
+            background: var(--neon-pink);
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            padding: 6px 20px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+        }
+
+        .entry-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 34px;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 15px rgba(255,229,0,0.4);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .entry-text {
+            font-size: 17px;
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        .entry-small {
+            font-size: 14px;
+            color: #777;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Parrillada card */
+        .parri-card {
+            background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(255,99,71,0.05));
+            border-color: var(--fire-1);
+        }
+
+        .parri-card::before {
+            background: linear-gradient(90deg, var(--fire-1), var(--neon-yellow), var(--fire-1));
+        }
+
+        .parri-tag {
+            display: inline-block;
+            background: var(--neon-green);
+            color: var(--dark);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13px;
+            letter-spacing: 3px;
+            padding: 4px 14px;
+            border-radius: 50px;
+            margin-top: 10px;
+        }
+
+        /* Map button */
+        .map-btn {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--neon-pink) 0%, #FF1493 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-family: 'Bangers', cursive;
+            font-size: 22px;
+            letter-spacing: 4px;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(255,45,123,0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .map-btn:hover::before { left: 100%; }
+
+        .map-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255,45,123,0.6);
+        }
+
+        /* Secret section */
+        .secret-section {
+            background: var(--dark);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .secret-box {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.02);
+            border: 1px dashed rgba(255,229,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .secret-label {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            color: var(--neon-yellow);
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            animation: blink 1.5s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .secret-text {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 28px;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 20px rgba(255,229,0,0.4);
+            line-height: 1.4;
+        }
+
+        .secret-emoji {
+            font-size: 40px;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-name {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 36px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .footer-sub {
+            font-size: 14px;
+            color: #555;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .footer-fire {
+            font-size: 30px;
+            margin-top: 15px;
+            animation: bounceEmojis 1s ease-in-out infinite alternate;
+        }
+
+        /* Confetti canvas */
+        #confetti {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 2500;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .hero-name { font-size: 42px; }
+            .cover-title { font-size: 32px; }
+            .entry-title { font-size: 26px; }
+            .secret-text { font-size: 22px; }
+            .expect-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .expect-item { padding: 15px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Confetti -->
+    <canvas id="confetti"></canvas>
+
+    <!-- ========== COVER ========== -->
+    <div class="cover" id="cover" onclick="openParty()">
+        <div class="grid-bg"></div>
+        <div class="smoke-layer"></div>
+
+        <!-- Sparks -->
+        <div id="sparksContainer"></div>
+
+        <div class="cover-content">
+            <div class="envelope-epic">
+                <div class="envelope-body">
+                    <div class="envelope-flap-cover"></div>
+                    <div class="envelope-seal">🔥</div>
+                </div>
+            </div>
+            <div class="cover-title">ESTÁS INVITAD@</div>
+            <div class="cover-sub">A ALGO ÉPICO</div>
+            <div class="cover-tap">▶ TOCA PARA ABRIR ◀</div>
+        </div>
+    </div>
+
+    <!-- ========== MAIN ========== -->
+    <div class="main" id="main">
+        <div class="hero">
+            <div class="fire-border"></div>
+            <div class="hero-emoji-row">🎂🔥🎉🍖💪</div>
+            <h1 class="hero-name">KATHY<br>INTRIAGO</h1>
+            <div class="hero-event">¡ CUMPLEAÑOS !</div>
+            <div class="hero-sub">⚡ Un Pokémon salvaje ha aparecido ⚡</div>
+            <div style="font-family: 'Press Start 2P', monospace; font-size: 11px; color: var(--neon-green); margin-top: 8px; letter-spacing: 2px; animation: blink 1.5s step-end infinite;">LA POKEMONA EVOLVED!</div>
+            <div class="neon-line"></div>
+        </div>
+
+        <div class="cards-zone">
+            <div class="cards-inner">
+
+                <!-- Cuándo -->
+                <div class="card">
+                    <span class="card-emoji">📅</span>
+                    <div class="card-label">Cuándo</div>
+                    <div class="card-title">Este Viernes</div>
+                    <p class="card-text">
+                        Desde las <strong>6:00 PM</strong><br>
+                        Hasta que lo permita el toque de queda...<br>
+                        <em style="color: var(--neon-pink); font-size: 14px;">(ya hablado con las autoridades 😏)</em>
+                    </p>
+                </div>
+
+                <!-- Dónde -->
+                <div class="card">
+                    <span class="card-emoji">📍</span>
+                    <div class="card-label">Dónde</div>
+                    <div class="card-title">María Luisa 3era Etapa</div>
+                    <p class="card-text">
+                        Frente a la compañía de taxis <strong>Mitaspal</strong>
+                    </p>
+                    <div style="margin-top: 18px;">
+                        <a href="https://maps.app.goo.gl/kkqRCZLFgCerQAD96" target="_blank" class="map-btn">
+                            📍 VER UBICACIÓN
+                        </a>
+                    </div>
+                </div>
+
+                <!-- REGLA DE ENTRADA -->
+                <div class="card entry-card">
+                    <span class="card-emoji">🍺</span>
+                    <div class="entry-badge">REGLA DE ENTRADA</div>
+                    <div class="entry-title">BEBIDA EN MANO</div>
+                    <p class="entry-text">
+                        No se aceptan manos vacías.<br>
+                        Tu entrada es tu <strong>bebida</strong>. 🍻
+                    </p>
+                    <p class="entry-small">¿Quieres llevar regalo también? Aceptado, pero la bebida es obligatoria.</p>
+                </div>
+
+                <!-- Parrillada -->
+                <div class="card parri-card">
+                    <span class="card-emoji">🥩</span>
+                    <div class="card-label">La Comida</div>
+                    <div class="card-title">PARRILLADA 🔥</div>
+                    <p class="card-text">
+                        Proteína al fallo.<br>
+                        Carne, carne y más carne.<br>
+                        Porque esta fiesta es de <strong>gente que entrena</strong>. 💪
+                    </p>
+                    <span class="parri-tag">FULL PROTEÍNA 💪</span>
+                </div>
+
+                <!-- Lo que te espera - DESPLEGABLE -->
+                <div class="card">
+                    <span class="card-emoji">🎉</span>
+                    <div class="card-label">Lo que te espera</div>
+                    <div class="card-title">UNA NOCHE ÉPICA</div>
+                    <button class="map-btn" style="margin-top: 10px; background: linear-gradient(135deg, var(--neon-cyan), #0099cc);" onclick="toggleExpect()">
+                        <span id="expectBtnText">👆 TOCA AQUÍ PARA DESCUBRIR</span>
+                    </button>
+                    <div id="expectContent" style="max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div class="expect-grid" style="margin-top: 15px;">
+                        <div class="expect-item">
+                            <span class="expect-icon">🥩</span>
+                            <div class="expect-name">Comer</div>
+                            <div class="expect-desc">Hasta reventar</div>
+                        </div>
+                        <div class="expect-item">
+                            <span class="expect-icon">🍻</span>
+                            <div class="expect-name">Beber</div>
+                            <div class="expect-desc">Sin medida</div>
+                        </div>
+                        <div class="expect-item">
+                            <span class="expect-icon">🎤</span>
+                            <div class="expect-name">Cantar</div>
+                            <div class="expect-desc">A todo pulmón</div>
+                        </div>
+                        <div class="expect-item">
+                            <span class="expect-icon">🔥</span>
+                            <div class="expect-name">Pasarla</div>
+                            <div class="expect-desc">Increíble</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECRET - DESPLEGABLE -->
+        <div class="secret-section">
+            <div class="secret-box">
+                <div class="secret-label">⚠ INFORMACIÓN CLASIFICADA ⚠</div>
+                <button class="map-btn" style="margin-top: 10px; background: linear-gradient(135deg, #333, #555); border: 1px solid var(--neon-yellow); font-family: 'Press Start 2P', monospace; font-size: 11px; letter-spacing: 2px;" onclick="toggleSecret()">
+                    <span id="secretBtnText">🔒 DESCLASIFICAR</span>
+                </button>
+                <div id="secretContent" style="max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="padding-top: 20px;">
+                        <div class="secret-text">No llevar piñas a Milagro 🍍</div>
+                        <div class="secret-emoji">🤫🍍🚫</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-name">KATHY INTRIAGO</div>
+            <div class="footer-sub">nos vemos el viernes</div>
+            <div class="footer-fire">🔥🎂🔥</div>
+        </div>
+    </div>
+
+    <script>
+        // Sparks on cover
+        const sparks = document.getElementById('sparksContainer');
+        for (let i = 0; i < 20; i++) {
+            const s = document.createElement('div');
+            s.className = 'spark';
+            s.style.left = (40 + Math.random() * 20) + '%';
+            s.style.top = (30 + Math.random() * 30) + '%';
+            s.style.setProperty('--sx', (Math.random() * 120 - 60) + 'px');
+            s.style.setProperty('--sy', (Math.random() * -100 - 30) + 'px');
+            s.style.animationDelay = Math.random() * 2 + 's';
+            s.style.animationDuration = (1 + Math.random() * 1.5) + 's';
+            const colors = ['#FF2D7B','#00F5FF','#FFE500','#39FF14','#FF6B00'];
+            s.style.background = colors[Math.floor(Math.random() * colors.length)];
+            sparks.appendChild(s);
+        }
+
+        // Open party
+        function openParty() {
+            document.getElementById('cover').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('main').classList.add('visible');
+                launchConfetti();
+            }, 400);
+        }
+
+        // Toggle "Qué te espera"
+        function toggleExpect() {
+            const el = document.getElementById('expectContent');
+            const btn = document.getElementById('expectBtnText');
+            if (el.style.maxHeight === '0px' || el.style.maxHeight === '') {
+                el.style.maxHeight = '500px';
+                btn.textContent = '👇 OCULTAR';
+            } else {
+                el.style.maxHeight = '0px';
+                btn.textContent = '👆 TOCA AQUÍ PARA DESCUBRIR';
+            }
+        }
+
+        // Toggle Secret
+        function toggleSecret() {
+            const el = document.getElementById('secretContent');
+            const btn = document.getElementById('secretBtnText');
+            if (el.style.maxHeight === '0px' || el.style.maxHeight === '') {
+                el.style.maxHeight = '300px';
+                btn.textContent = '🔓 CLASIFICADO REVELADO';
+            } else {
+                el.style.maxHeight = '0px';
+                btn.textContent = '🔒 DESCLASIFICAR';
+            }
+        }
+
+        // Confetti explosion
+        function launchConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const pieces = [];
+            const colors = ['#FF2D7B','#00F5FF','#FFE500','#39FF14','#FF6B00','#FF1493','#fff'];
+            
+            for (let i = 0; i < 150; i++) {
+                pieces.push({
+                    x: canvas.width / 2 + (Math.random() - 0.5) * 200,
+                    y: canvas.height / 2,
+                    vx: (Math.random() - 0.5) * 15,
+                    vy: Math.random() * -18 - 5,
+                    w: 8 + Math.random() * 8,
+                    h: 4 + Math.random() * 6,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rot: Math.random() * 360,
+                    rotSpeed: (Math.random() - 0.5) * 15,
+                    gravity: 0.3 + Math.random() * 0.2,
+                    opacity: 1
+                });
+            }
+
+            let frame = 0;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let alive = false;
+
+                pieces.forEach(p => {
+                    if (p.opacity <= 0) return;
+                    alive = true;
+                    p.x += p.vx;
+                    p.vy += p.gravity;
+                    p.y += p.vy;
+                    p.rot += p.rotSpeed;
+                    p.vx *= 0.99;
+
+                    if (frame > 60) p.opacity -= 0.01;
+
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rot * Math.PI / 180);
+                    ctx.globalAlpha = Math.max(0, p.opacity);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+                    ctx.restore();
+                });
+
+                frame++;
+                if (alive && frame < 300) requestAnimationFrame(animate);
+                else ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+            animate();
+        }
+
+        window.addEventListener('resize', () => {
+            const c = document.getElementById('confetti');
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
