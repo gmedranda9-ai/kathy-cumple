@@ -644,8 +644,8 @@
             <div class="hero-emoji-row">🎂🔥🎉🍖💪</div>
             <h1 class="hero-name">KATHY<br>INTRIAGO</h1>
             <div class="hero-event">¡ CUMPLEAÑOS !</div>
-            <div class="hero-sub">⚡ Un Pokémon salvaje ha aparecido ⚡</div>
-            <div style="font-family: 'Press Start 2P', monospace; font-size: 11px; color: var(--neon-green); margin-top: 8px; letter-spacing: 2px; animation: blink 1.5s step-end infinite;">LA POKEMONA EVOLVED!</div>
+            <div class="hero-sub">⚡ Una Pokemona ha aparecido ⚡</div>
+            <div style="font-family: 'Press Start 2P', monospace; font-size: 11px; color: var(--neon-green); margin-top: 8px; letter-spacing: 2px; animation: blink 1.5s step-end infinite;">UNA POKEMONA EVOLUCIONA!</div>
             <div class="neon-line"></div>
         </div>
 
@@ -745,8 +745,9 @@
         <div class="secret-section">
             <div class="secret-box">
                 <div class="secret-label">⚠ INFORMACIÓN CLASIFICADA ⚠</div>
-                <button class="map-btn" style="margin-top: 10px; background: linear-gradient(135deg, #333, #555); border: 1px solid var(--neon-yellow); font-family: 'Press Start 2P', monospace; font-size: 11px; letter-spacing: 2px;" onclick="toggleSecret()">
-                    <span id="secretBtnText">🔒 DESCLASIFICAR</span>
+                <div style="font-size: 15px; color: #aaa; margin: 10px 0 15px; font-style: italic;">Hay un mensaje oculto para ti 👀</div>
+                <button class="map-btn" style="background: linear-gradient(135deg, var(--neon-yellow), var(--neon-orange)); color: var(--dark); font-family: 'Bangers', cursive; font-size: 20px; letter-spacing: 3px; animation: sealPulse 1.5s ease-in-out infinite;" onclick="toggleSecret()">
+                    <span id="secretBtnText">🔒 TOCA PARA DESCLASIFICAR 🔒</span>
                 </button>
                 <div id="secretContent" style="max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
                     <div style="padding-top: 20px;">
@@ -810,10 +811,10 @@
             const btn = document.getElementById('secretBtnText');
             if (el.style.maxHeight === '0px' || el.style.maxHeight === '') {
                 el.style.maxHeight = '300px';
-                btn.textContent = '🔓 CLASIFICADO REVELADO';
+                btn.textContent = '🔓 SECRETO REVELADO 🔓';
             } else {
                 el.style.maxHeight = '0px';
-                btn.textContent = '🔒 DESCLASIFICAR';
+                btn.textContent = '🔒 TOCA PARA DESCLASIFICAR 🔒';
             }
         }
 
